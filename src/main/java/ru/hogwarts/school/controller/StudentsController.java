@@ -42,9 +42,8 @@ public class StudentsController {
     }
 
     @PutMapping("{id}") // PUT http://localhost:8080/students/1
-    public ResponseEntity<Student> editStudent(@RequestBody Student student,
-                                               @PathVariable long id) {
-        Student foundStudent = studentService.editStudent(id, student);
+    public ResponseEntity<Student> editStudent(@RequestBody Student student) {
+        Student foundStudent = studentService.editStudent(student);
         if (foundStudent == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
@@ -52,8 +51,7 @@ public class StudentsController {
     }
 
     @DeleteMapping("{id}")// DELETE http://localhost:8080/students/1
-    public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
+    public void deleteStudent(@PathVariable Long id) {
         studentService.deleteStudent(id);
-        return ResponseEntity.ok().build();
     }
 }
