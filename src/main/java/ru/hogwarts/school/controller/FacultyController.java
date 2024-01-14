@@ -29,17 +29,17 @@ public class FacultyController {
     }
 
     @GetMapping() // GET http://localhost:8080/faculties
-    public ResponseEntity<Collection<Faculty>> getAll() {
+    public ResponseEntity<Collection<Faculty>> getAllFaculties() {
         return ResponseEntity.ok(facultyService.getAllFaculties());
     }
 
     @GetMapping("/color/{color}") // GET http://localhost:8080/students/color/green
-    public Collection<Faculty> getAge(@PathVariable String color) {
+    public Collection<Faculty> getColor(@PathVariable String color) {
         return facultyService.findSameColor(color);
     }
 
     @PostMapping // POST http://localhost:8080/faculties
-    public Faculty createStudent(@RequestBody Faculty faculty) {
+    public Faculty createFaculty(@RequestBody Faculty faculty) {
         return facultyService.createFaculty(faculty);
     }
 
