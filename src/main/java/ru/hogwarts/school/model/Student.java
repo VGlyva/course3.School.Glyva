@@ -3,21 +3,21 @@ package ru.hogwarts.school.model;
 import java.util.Objects;
 
 public class Student {
-    private Long id;
+    private long id;
     private String name;
-    private String color;
+    private int age;
 
-    public Student(Long id, String name, String color) {
+    public Student(long id, String name, int age) {
         this.id = id;
         this.name = name;
-        this.color = color;
+        this.age = age;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -29,12 +29,12 @@ public class Student {
         this.name = name;
     }
 
-    public String getColor() {
-        return color;
+    public int getAge() {
+        return age;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override
@@ -42,12 +42,12 @@ public class Student {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return Objects.equals(id, student.id) && Objects.equals(name, student.name) && Objects.equals(color, student.color);
+        return id == student.id && age == student.age && Objects.equals(name, student.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, color);
+        return Objects.hash(id, name, age);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class Student {
         return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", color='" + color + '\'' +
+                ", age=" + age +
                 '}';
     }
 }
