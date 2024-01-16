@@ -33,9 +33,10 @@ public class FacultyController {
         return ResponseEntity.ok(facultyService.getAllFaculties());
     }
 
-    @GetMapping("/color/{color}") // GET http://localhost:8080/students/color/green
-    public Collection<Faculty> getColor(@PathVariable String color) {
-        return facultyService.findSameColor(color);
+    @GetMapping() // GET http://localhost:8080/students
+    public Collection<Faculty> getColorOrName(@RequestParam(required = false) String color,
+                                              @RequestParam(required = false) String name) {
+        return facultyService.findFacultyByColorOrName(color,name);
     }
 
     @PostMapping // POST http://localhost:8080/faculties

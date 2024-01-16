@@ -35,12 +35,18 @@ public class FacultyService {
         facultyRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }
+
     public Collection<Faculty> getAllFaculties() {
         return facultyRepository.findAll();
     }
-    public Collection<Faculty> findSameColor(String color) {
+
+    /*public Collection<Faculty> findSameColor(String color) {
         return getAllFaculties().stream()
                 .filter(e -> e.getColor().equals(color))
                 .collect(Collectors.toList());
+    }*/
+
+    public Collection<Faculty> findFacultyByColorOrName(String color, String name) {
+        return facultyRepository.findFacultyByColorOrNameIgnoreCase(color, name);
     }
 }
