@@ -28,7 +28,7 @@ public class FacultyController {
         return ResponseEntity.ok(faculty);
     }
 
-    @GetMapping() // GET http://localhost:8080/faculties
+    @GetMapping("/all") // GET http://localhost:8080/faculties
     public ResponseEntity<Collection<Faculty>> getAllFaculties() {
         return ResponseEntity.ok(facultyService.getAllFaculties());
     }
