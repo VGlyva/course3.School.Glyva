@@ -39,13 +39,14 @@ public class StudentsController {
     }
 
     @GetMapping() // GET http://localhost:8080/students/int
-    public ResponseEntity findStudentByBetweenAge(@RequestParam(required = false) Integer min,
-                                                  @RequestParam(required = false) Integer max) {
+    public ResponseEntity<?> findStudentByBetweenAge(@RequestParam(required = false) Integer min,
+                                                     @RequestParam(required = false) Integer max) {
         if (min > max) {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(studentService.findByAgeBetween(min, max));
     }
+
     @GetMapping("/faculty/{id}") // GET http://localhost:8080/students/faculty/id
     public ResponseEntity<Faculty> findFacultyById(@PathVariable long id) {
         Student student = studentService.findStudent(id);
@@ -60,8 +61,8 @@ public class StudentsController {
     }
 
     @PostMapping // POST http://localhost:8080/students
-    public Student createStudent(@RequestBody Student student) {
-        return studentService.createStudent(student);
+    public ResponseEntity<Student> createStudent(@RequestBody Student student) {
+        return ResponseEntity.ok(student);
     }
 
     @PutMapping("{id}") // PUT http://localhost:8080/students/1
