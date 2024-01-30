@@ -86,6 +86,7 @@ public class FacultyControllerMockTest {
                 .andExpect(jsonPath("$.color").value(COLOR));
 
     }
+
     @Test
     void getFacultyByIdTest() throws Exception {
 
@@ -105,12 +106,11 @@ public class FacultyControllerMockTest {
     @Test
     void getFacultyByColorOrNameTest() throws Exception { // подскажите почему не работает тест?
 
-
         when(facultyRepository.findFacultyByColorOrNameIgnoreCase(any(String.class), (any(String.class))))
-                .thenReturn((Collection<Faculty>) faculty);
+                .thenReturn(faculty);
 
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/faculties?color=" + COLOR + "&" + "name=" + NAME)
+                        .get("/faculties?color=" + COLOR + "&name=" + NAME)
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -127,7 +127,7 @@ public class FacultyControllerMockTest {
 
         when(facultyRepository.findAll()).thenReturn(facultyTest);
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/faculties")
+                        .get("/faculties/all")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.size()").value(2));
