@@ -31,7 +31,7 @@ public class StudentService {
         return studentRepository.save(student);
     }
 
-    public ResponseEntity deleteStudent(long id) {
+    public ResponseEntity<?> deleteStudent(long id) {
         studentRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }

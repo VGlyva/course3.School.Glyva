@@ -28,7 +28,7 @@ public class StudentsController {
         return ResponseEntity.ok(student);
     }
 
-    @GetMapping("/all") // GET http://localhost:8080/students
+    @GetMapping("/all") // GET http://localhost:8080/students/all
     public ResponseEntity<Collection<Student>> getAll() {
         return ResponseEntity.ok(studentService.getAll());
     }
