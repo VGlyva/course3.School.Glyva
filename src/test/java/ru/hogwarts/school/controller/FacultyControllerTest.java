@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import ru.hogwarts.school.model.Faculty;
-import ru.hogwarts.school.model.Student;
+
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class FacultyControllerTest {
@@ -24,7 +24,7 @@ public class FacultyControllerTest {
     }
 
     @Test
-    void getFacultiesTest() throws Exception { // тест проходит вне зависимости от URL /faculties/all
+    void getFacultiesTest() throws Exception {
         Assertions
                 .assertThat(this.restTemplate.getForObject
                         ("http://localhost:" + port + "/faculties/all", String.class))

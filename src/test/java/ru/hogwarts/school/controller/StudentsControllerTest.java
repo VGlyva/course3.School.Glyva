@@ -48,7 +48,7 @@ public class StudentsControllerTest {
         Student student = new Student(99L, "Арнольд", 17);
         long id = this.restTemplate.postForObject
                 ("http://localhost:" + port + "/students", student, Student.class).getId();
-        Student student1 = new Student(101L, "Гарольд", 65);
+        Student student1 = new Student(id, "Гарольд", 65);
         restTemplate.put("http://localhost:" + port + "/students", student1);
         Assertions
                 .assertThat((this.restTemplate.getForObject

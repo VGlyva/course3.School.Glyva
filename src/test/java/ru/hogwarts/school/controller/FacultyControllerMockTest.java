@@ -1,7 +1,6 @@
 package ru.hogwarts.school.controller;
 
 import org.json.JSONObject;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,15 +9,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import ru.hogwarts.school.model.Faculty;
-import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repositories.FacultyRepository;
 import ru.hogwarts.school.service.FacultyService;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +29,7 @@ public class FacultyControllerMockTest {
     private MockMvc mockMvc;
     @MockBean
     private FacultyRepository facultyRepository;
-    @SpyBean // чем отличается от MockBean ?
+    @SpyBean
     private FacultyService facultyService;
     @InjectMocks
     private FacultyController facultyController;
@@ -104,7 +100,7 @@ public class FacultyControllerMockTest {
     }
 
     @Test
-    void getFacultyByColorOrNameTest() throws Exception { // подскажите почему не работает тест?
+    void getFacultyByColorOrNameTest() throws Exception {
 
         when(facultyRepository.findFacultyByColorOrNameIgnoreCase(any(String.class), (any(String.class))))
                 .thenReturn(faculty);
@@ -120,7 +116,7 @@ public class FacultyControllerMockTest {
     }
 
     @Test
-    void getAllFacultyTest() throws Exception { // подскажите почему не работает тест?
+    void getAllFacultyTest() throws Exception {
         List<Faculty> facultyTest = new ArrayList<>
                 (List.of(new Faculty(111, "111", "Red", null)
                         , new Faculty(222, "222", "333", null)));

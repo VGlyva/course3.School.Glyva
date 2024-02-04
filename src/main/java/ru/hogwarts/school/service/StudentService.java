@@ -8,7 +8,7 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repositories.StudentRepository;
 
 import java.util.*;
-import java.util.stream.Collectors;
+
 
 @Service
 public class StudentService {
@@ -50,6 +50,15 @@ public class StudentService {
 
     public Faculty findFacultyByStudent(long id) {
         return studentRepository.getReferenceById(id).getFaculty();
+    }
+    public Integer getAllStudentsInSchool() {
+        return studentRepository.getAllStudentsInSchool();
+    }
+    public Integer getAverageAgeStudents() {
+        return studentRepository.getAverageAgeStudents();
+    }
+    public List<Student> getByLastFiveStudents() {
+        return studentRepository.getByLastFiveStudents();
     }
 
 }

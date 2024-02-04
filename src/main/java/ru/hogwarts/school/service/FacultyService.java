@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Faculty;
-import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repositories.FacultyRepository;
 
 import java.util.Collection;
-import java.util.stream.Collectors;
+
 
 @Service
 public class FacultyService {
@@ -31,7 +30,7 @@ public class FacultyService {
         return facultyRepository.save(faculty);
     }
 
-    public ResponseEntity deleteFaculty(long id) {
+    public ResponseEntity<?> deleteFaculty(long id) {
         facultyRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }
@@ -40,11 +39,6 @@ public class FacultyService {
         return facultyRepository.findAll();
     }
 
-    /*public Collection<Faculty> findSameColor(String color) {
-        return getAllFaculties().stream()
-                .filter(e -> e.getColor().equals(color))
-                .collect(Collectors.toList());
-    }*/
 
     public Faculty findFacultyByColorOrName(String color, String name) {
         return facultyRepository.findFacultyByColorOrNameIgnoreCase(color, name);
