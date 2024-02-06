@@ -35,8 +35,8 @@ public class StudentsController {
     }
 
     @GetMapping("/age/{age}") // GET http://localhost:8080/students/age/10
-    public Collection<Student> getAge(@PathVariable long age) {
-        return studentService.findSameAge(age);
+    public ResponseEntity<Collection<Student>> getAge(@PathVariable long age) {
+        return ResponseEntity.ok(studentService.findSameAge(age));
     }
 
     @GetMapping() // GET http://localhost:8080/students/int
