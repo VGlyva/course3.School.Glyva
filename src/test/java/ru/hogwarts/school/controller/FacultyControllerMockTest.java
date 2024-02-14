@@ -15,6 +15,7 @@ import ru.hogwarts.school.repositories.FacultyRepository;
 import ru.hogwarts.school.service.FacultyService;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -100,10 +101,11 @@ public class FacultyControllerMockTest {
     }
 
     @Test
-    void getFacultyByColorOrNameTest() throws Exception {
+    void getFacultyByColorOrNameTest() throws Exception { // Как сделать тест с возвращением коллекции?
+                                                         // Работает только метод с возвращением сущности.
 
         when(facultyRepository.findFacultyByColorOrNameIgnoreCase(any(String.class), (any(String.class))))
-                .thenReturn(faculty);
+                .thenReturn((Collection<Faculty>) faculty);
 
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/faculties?color=" + COLOR + "&name=" + NAME)

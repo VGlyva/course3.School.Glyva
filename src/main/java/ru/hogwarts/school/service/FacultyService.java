@@ -1,5 +1,7 @@
 package ru.hogwarts.school.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,8 @@ import java.util.Collection;
 
 @Service
 public class FacultyService {
+
+    Logger logger = LoggerFactory.getLogger(FacultyService.class);
     @Autowired
     private final FacultyRepository facultyRepository;
 
@@ -19,28 +23,34 @@ public class FacultyService {
     }
 
     public Faculty createFaculty(Faculty student) {
+        logger.info("Was invoked method for create faculty");
         return facultyRepository.save(student);
     }
 
     public Faculty findFaculty(long id) {
+        logger.info("Search for an faculty by student ID");
         return facultyRepository.findById(id).get();
     }
 
     public Faculty editFaculty(Faculty faculty) {
+        logger.info("Was invoked method for create faculty");
         return facultyRepository.save(faculty);
     }
 
     public ResponseEntity<?> deleteFaculty(long id) {
         facultyRepository.deleteById(id);
+        logger.info("Was invoked method for delete student");
         return ResponseEntity.ok().build();
     }
 
     public Collection<Faculty> getAllFaculties() {
+        logger.info("Was invoked method for called to display all faculties");
         return facultyRepository.findAll();
     }
 
 
-    public Faculty findFacultyByColorOrName(String color, String name) {
+    public Collection<Faculty> findFacultyByColorOrName(String color, String name) {
+        logger.info("A method was called to display all faculties by color or name");
         return facultyRepository.findFacultyByColorOrNameIgnoreCase(color, name);
     }
 }

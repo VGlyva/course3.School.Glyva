@@ -33,7 +33,7 @@ public class FacultyController {
     }
 
     @GetMapping() // GET http://localhost:8080/students
-    public Faculty getColorOrName(@RequestParam(required = false) String color,
+    public Collection<Faculty> getColorOrName(@RequestParam(required = false) String color,
                                   @RequestParam(required = false) String name) {
         return facultyService.findFacultyByColorOrName(color, name);
     }
