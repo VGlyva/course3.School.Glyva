@@ -9,6 +9,7 @@ import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.repositories.FacultyRepository;
 
 import java.util.Collection;
+import java.util.Comparator;
 
 
 @Service
@@ -52,5 +53,11 @@ public class FacultyService {
     public Collection<Faculty> findFacultyByColorOrName(String color, String name) {
         logger.info("A method was called to display all faculties by color or name");
         return facultyRepository.findFacultyByColorOrNameIgnoreCase(color, name);
+    }
+
+    public String getByFacultyLongName() {
+        return facultyRepository.findAll().stream()
+                .max(Comparator.comparingInt(f -> f.getName().length()))
+                .get().getName();
     }
 }

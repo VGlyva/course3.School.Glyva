@@ -65,4 +65,12 @@ public class AvatarController {
                                                       @RequestParam("size") Integer pageSize){
         return ResponseEntity.ok(avatarService.getAll(pageNumber,pageSize));
     }
+    @GetMapping("/sum")
+    public ResponseEntity<Integer> getSum() {
+        return ResponseEntity.ok(avatarService.getSum());
+    }
+    @GetMapping("/sumParallel")
+    public ResponseEntity<Integer> getSumParallel() {
+        return ResponseEntity.ok(avatarService.getSumParallel());
+    }
 }

@@ -20,6 +20,8 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
 
@@ -93,9 +95,30 @@ public class AvatarService {
     private String getExtensions(String fileName) {
         return fileName.substring(fileName.lastIndexOf(".") + 1);
     }
+
     public List<Avatar> getAll(Integer number, Integer size) {
         PageRequest pageRequest = PageRequest.of(number - 1, size);
         logger.info("Was invoked method for called to display all avatars");
         return avatarRepository.findAll(pageRequest).getContent();
+    }
+
+    public int getSum() {
+        long start = System.currentTimeMillis();
+        logger.info("Was invoked method for sum");
+        int sum = Stream.iterate(1, a -> a + 1).limit(1_000_000)
+                .reduce(0, (a, b) -> a + b);
+        logger.info("time= " + (System.currentTimeMillis() - start));
+        return sum;
+    }
+
+    public int getSumParallel() {
+        long start = System.currentTimeMillis();
+        logger.info("Was invoked method for sumParallel");
+        int sum1 = IntStream.iterate(1, a -> a + 1)
+                .limit(1_000_000)
+                .parallel()
+                .sum();
+        logger.info("time= " + (System.currentTimeMillis() - start));
+        return sum1;
     }
 }

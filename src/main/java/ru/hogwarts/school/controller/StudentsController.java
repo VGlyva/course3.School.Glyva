@@ -1,5 +1,6 @@
 package ru.hogwarts.school.controller;
 
+import liquibase.pro.packaged.R;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -71,6 +72,14 @@ public class StudentsController {
     @GetMapping("/lastFiveStudents")
     public ResponseEntity<List<Student>> getByLastFiveStudents() {
         return ResponseEntity.ok(studentService.getByLastFiveStudents());
+    }
+    @GetMapping("/beginWithA")
+    public ResponseEntity<List<Student>> getByBeginWithA() {
+        return ResponseEntity.ok(studentService.getByStudentsBeginWithA());
+    }
+    @GetMapping("/middleAge")
+    public ResponseEntity<Double> getByMiddleAge() {
+        return ResponseEntity.ok(studentService.getStudentByMiddleAge());
     }
 
     @PostMapping // POST http://localhost:8080/students

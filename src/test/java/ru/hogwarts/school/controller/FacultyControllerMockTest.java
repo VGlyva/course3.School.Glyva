@@ -102,19 +102,18 @@ public class FacultyControllerMockTest {
 
     @Test
     void getFacultyByColorOrNameTest() throws Exception { // Как сделать тест с возвращением коллекции?
-                                                         // Работает только метод с возвращением сущности.
-
+        // Работает только метод с возвращением сущности.
+        Collection<Faculty> collection = new ArrayList<>(
+        List.of(new Faculty(111, "111", "Red", null)
+                , new Faculty(222, "222", "333", null)));
         when(facultyRepository.findFacultyByColorOrNameIgnoreCase(any(String.class), (any(String.class))))
-                .thenReturn((Collection<Faculty>) faculty);
-
+                .thenReturn(collection);
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/faculties?color=" + COLOR + "&name=" + NAME)
-                        .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(ID))
-                .andExpect(jsonPath("$.name").value(NAME))
-                .andExpect(jsonPath("$.color").value(COLOR));
+                .andExpect(jsonPath("$.size()").value(2));
+
     }
 
     @Test
