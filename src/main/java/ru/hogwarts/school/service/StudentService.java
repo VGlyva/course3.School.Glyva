@@ -43,7 +43,7 @@ public class StudentService {
         return ResponseEntity.ok().build();
     }
 
-    public Collection<Student> getAll() {
+    public List<Student> getAll() {
         logger.info("Was invoked method for called to display all students");
         return studentRepository.findAll();
     }
@@ -87,5 +87,36 @@ public class StudentService {
                 .average()
                 .orElse(0);
     }
+    public void printName(int i){
+        System.out.println(getAll().get(i).getName());
+    }
+    public void printNameParallel(){
+        printName(0);
+        new Thread(()->{
+            printName(2);
+            printName(3);
+        }).start();new Thread(()->{
+            printName(4);
+            printName(5);
+        }).start();
 
+        printName(1);
+
+    }
+    public synchronized void printNameSynh(int i){
+        System.out.println(getAll().get(i).getName());
+    }
+    public void printNameParallelSynh(){
+        printNameSynh(0);
+        new Thread(()->{
+            printNameSynh(2);
+            printNameSynh(3);
+        }).start();new Thread(()->{
+            printNameSynh(4);
+            printNameSynh(5);
+        }).start();
+
+        printNameSynh(1);
+
+    }
 }

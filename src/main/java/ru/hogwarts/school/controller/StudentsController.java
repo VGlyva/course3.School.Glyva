@@ -31,7 +31,7 @@ public class StudentsController {
     }
 
     @GetMapping("/all") // GET http://localhost:8080/students/all
-    public ResponseEntity<Collection<Student>> getAll() {
+    public ResponseEntity<List<Student>> getAll() {
         return ResponseEntity.ok(studentService.getAll());
     }
 
@@ -80,6 +80,14 @@ public class StudentsController {
     @GetMapping("/middleAge")
     public ResponseEntity<Double> getByMiddleAge() {
         return ResponseEntity.ok(studentService.getStudentByMiddleAge());
+    }
+    @GetMapping("/print-parallel")
+    public void  getNameStudent(){
+        studentService.printNameParallel();
+    }
+    @GetMapping("/print-synchronized")
+    public void  getNameStudentSynh(){
+        studentService.printNameParallelSynh();
     }
 
     @PostMapping // POST http://localhost:8080/students
