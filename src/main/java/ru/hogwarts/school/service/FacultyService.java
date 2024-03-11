@@ -23,9 +23,9 @@ public class FacultyService {
         this.facultyRepository = facultyRepository;
     }
 
-    public Faculty createFaculty(Faculty student) {
+    public Faculty createFaculty(Faculty faculty) {
         logger.info("Was invoked method for create faculty");
-        return facultyRepository.save(student);
+        return facultyRepository.save(faculty);
     }
 
     public Faculty findFaculty(long id) {
